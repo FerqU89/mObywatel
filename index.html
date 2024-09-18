@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="pl">
+
+<!-- Mirrored from mdwd.cba.pl/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Aug 2024 11:50:16 GMT -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>mDowód</title>
+    <link rel="stylesheet" href="../fonts.googleapis.com/css78ac.css?family=Roboto:400,500&amp;display=swap">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f8fc;
+            color: #2f353f;
+        }
+        .container {
+            width: 100%;
+            max-width: 414px;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 16px;
+            box-sizing: border-box;
+            padding-bottom: 100px; /* Adjusted space for the fixed bottom bar */
+        }
+        .header-container {
+            width: 100%;
+            background-color: #fff;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-sizing: border-box;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 16px;
+            max-width: 414px;
+            margin: 0 auto;
+            box-sizing: border-box;
+        }
+        .header img {
+            width: 20px;
+            height: 20px;
+        }
+        .header h1 {
+            font-family: 'Roboto Medium', 'Roboto', sans-serif;
+            font-size: 18px;
+            margin: 0;
+            text-align: center;
+            color: #2f353f;
+            font-weight: normal;
+            flex-grow: 1;
+        }
+        .time {
+            text-align: center;
+            margin: 16px 0;
+            color: #888;
+            font-size: 12px;
+        }
+        .info-section {
+            background-color: #dfecf9;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 16px;
+            color: #2f353f;
+            position: relative;
+            transition: transform 0s;
+        }
+        .info-section.blue {
+            background-color: #dfecf9;
+        }
+        .info-section img {
+            vertical-align: middle;
+            margin-right: 8px;
+        }
+        .info-section p {
+            margin: 8px 0;
+            color: #2f353f;
+        }
+        .info-section p:first-of-type {
+            font-size: 16px;
+            font-weight: 500;
+        }
+        .info-section p:last-of-type {
+            margin-left: 32px;
+            font-size: 14px;
+        }
+        .info-section .center-icons {
+            text-align: center;
+            margin-top: 16px;
+        }
+        .info-section .center-icons img {
+            margin: 0 4px;
+            vertical-align: middle;
+            cursor: pointer;
+        }
+        .info-section .close-icon {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            cursor: pointer;
+        }
+        .document-section {
+            position: relative;
+            padding: 16px;
+            background-image: url('normal_u16.svg');
+            background-size: cover;
+            border-radius: 12px;
+            width: 100%;
+            height: 457px;
+            margin: 0 auto 40px;
+            opacity: 0.88;
+            background-color: #ffffff;
+            box-shadow: 4px 16px 36px 0px rgba(178, 178, 178, 0.35);
+            box-sizing: border-box;
+        }
+        .document-images {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        .document-images img,
+        .document-images video {
+            display: block;
+            box-sizing: border-box;
+        }
+        .user-photo {
+            width: 135px;
+            height: auto;
+            margin-bottom: 10px; /* Reduced space */
+        }
+        .flag {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px; /* Reduced space */
+        }
+        .republic {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .eagle-container {
+            position: relative;
+            width: 30px;
+            height: 34px;
+            background: #c8c9cd;
+            border-radius: 0 0 10px 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden; /* Ensure the eagle image doesn't overflow */
+        }
+        .eagle {
+            position: absolute;
+            width: 28px;
+            height: auto;
+        }
+        .text {
+            font-family: 'Roboto', sans-serif;
+            font-size: 12px;
+            color: #7A7D83;
+            text-align: left;
+        }
+        .document-details {
+            position: absolute;
+            top: 2px;
+            left: 170px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            width: calc(100% - 170px);
+        }
+        #dane-na-giloszu {
+            width: 105px;
+            height: 268px;
+            background-color: transparent;
+        }
+        .label {
+            font-family: "Roboto Medium", "Roboto", sans-serif;
+            font-weight: 500;
+            display: block;
+            margin-bottom: 5px;
+            color: #1d1d1d;
+            font-size: 17px;
+        }
+        .description {
+            color: #4a4a4a;
+            font-size: 14px;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .validity {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 72px;
+            border-radius: 0 0 12px 12px;
+            background-color: #ffffff;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            box-shadow: 4px 16px 36px 0px rgba(178, 178, 178, 0.35);
+        }
+        .validity-icon {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 16px;
+        }
+        .validity-text {
+            font-family: "Roboto Medium", "Roboto", sans-serif;
+            font-weight: 500;
+            color: #598527;
+            font-size: 14px;
+        }
+        .actions {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+        .action-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); /* More visible shadow */
+            font-size: 18px;
+        }
+        .action-button img.arrow-icon {
+            width: 14px; /* Adjusted size for smaller arrow icons */
+            height: 14px; /* Adjusted size for smaller arrow icons */
+            object-fit: contain; /* Ensures icons are not stretched */
+        }
+        .action-button .icon-text {
+            display: flex;
+            align-items: center;
+        }
+        .action-button .icon-text img {
+            width: 28px; /* Updated size for larger icons */
+            height: 28px; /* Updated size for larger icons */
+            margin-right: 16px;
+            object-fit: contain; /* Ensures icons are not stretched */
+        }
+        .last-update {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); /* More visible shadow */
+            font-size: 14px;
+            color: #4a4a4a;
+        }
+        .last-update .last-update-text {
+            color: #4a4a4a;
+        }
+        .last-update .last-update-date {
+            font-family: "Roboto Medium", "Roboto", sans-serif;
+            font-size: 16px;
+            color: #1d1d1d;
+        }
+        #aktualizuj {
+            width: 120px;
+            height: 40px;
+            padding: 8px 24px;
+            border-radius: 24px;
+            background-color: #dbeaf9;
+            box-sizing: border-box;
+            font-family: "Roboto", sans-serif;
+            color: #014a93;
+            text-align: center;
+            line-height: normal;
+            letter-spacing: 0.2px;
+            cursor: pointer;
+            font-size: 16px;
+            border: none; /* Remove the border */
+        }
+        #get-orientation {
+            width: 100%;
+            padding: 12px;
+            text-align: center;
+            background-color: #014a93;
+            color: #fff;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-bottom: 16px;
+        }
+        .delete-button {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.15); /* More visible shadow */
+            font-size: 18px;
+            margin-top: 16px; /* Added margin for spacing */
+            color: red; /* Set text color to red */
+        }
+        .delete-button .icon-text {
+            display: flex;
+            align-items: center;
+        }
+        .delete-button .icon-text img {
+            width: 28px; /* Updated size for larger icons */
+            height: 28px; /* Updated size for larger icons */
+            margin-right: 16px;
+            object-fit: contain; /* Ensures icons are not stretched */
+        }
+        .bottom-nav {
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            background-color: #f5f6fa; /* Updated background color */
+            box-shadow: 0px -2px 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0 35px 0; /* Adjusted padding for more space */
+            box-sizing: border-box;
+        }
+        .bottom-nav-item {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            font-size: 12px;
+            color: #888;
+            margin-top: 10px; /* Added margin to position items at the top */
+        }
+        .bottom-nav-item img {
+            width: 24px;
+            height: 24px;
+            margin-bottom: 5px;
+            object-fit: contain; /* Ensures icons are not stretched */
+        }
+        .bottom-nav-item.active {
+            color: #014a93;
+        }
+        .spacer {
+            height: 80px; /* Spacer height to add more space under navigation */
+            background-color: #f5f6fa; /* Match the background color of the navigation */
+        }
+
+        /* Specific styles for Android devices */
+        body.android .action-button img.arrow-icon {
+            width: 14px; /* Adjusted size for smaller arrow icons */
+            height: 14px; /* Adjusted size for smaller arrow icons */
+            object-fit: contain; /* Ensures icons are not stretched */
+        }
+    </style>
+</head>
+<body>
+    <div class="header-container">
+        <div class="header">
+            <img src="normal_u8%20(1).svg" alt="Back" id="back-arrow">
+            <h1>mDowód</h1>
+            <img src="normal_u12.svg" alt="Info" id="group">
+        </div>
+    </div>
+    <div class="container">
+        <button id="get-orientation">Enable Device Orientation</button>
+        <div class="time" id="data">
+            Czas: 21:47:03 24.05.2024
+        </div>
+        <div class="info-section" id="info-section">
+            <p>
+                <img src="normal_u391.svg" alt="Info Icon">
+                Kiedy nie skorzystasz z mDowodu
+            </p>
+            <p>
+                Gdy załatwiasz sprawę w banku (do 31 sierpnia), wyjeżdżasz za granicę i składasz wniosek o dowód osobisty.
+            </p>
+            <div class="center-icons">
+                <img src="normal_u394.svg" alt="Left Icon" id="left-icon">
+                <img src="normal_u393.svg" alt="Right Icon" id="right-icon">
+            </div>
+        </div>
+        <div class="info-section blue" id="blue-section" style="display: none;">
+            <p>
+                <img src="normal_u391.svg" alt="Info Icon">
+                A kiedy skorzystasz z mDowodu
+            </p>
+            <p>
+                We wszystkich innych sytuacjach – na przykład w urzędzie, sądzie, przychodni, na poczcie czy u notariusza.
+            </p>
+            <div class="center-icons">
+                <img src="normal_u393.svg" alt="Right Icon" id="right-icon-blue">
+                <img src="normal_u394.svg" alt="Left Icon" id="left-icon-blue">
+            </div>
+            <div class="close-icon" id="close-icon">
+                <img src="normal_u408.svg" alt="Close Icon">
+            </div>
+        </div>
+        <div class="document-section">
+            <div class="document-images">
+                <img src="Projekt%20bez%20nazwy%20(31).png" alt="User Photo" class="user-photo"> <!-- Updated photo -->
+                <img src="RPReplay_Final1716805071-ezgif.com-video-to-gif-converter.gif" alt="Animated Flag" class="flag">
+                <div class="republic">
+                    <div class="eagle-container" id="eagle-container">
+                        <img src="eagle%20nobg.png" alt="Eagle" class="eagle" id="republic-icon">
+                    </div>
+                    <div class="text">
+                        Rzeczpospolita<br>Polska
+                    </div>
+                </div>
+            </div>
+            <div class="document-details">
+                <div class="info-card">
+                    <p><span class="label">WOJCIECH</span> <span class="description">Imię (imiona)</span></p>
+                    <p><span class="label">JANOWSKI</span> <span class="description">Nazwisko</span></p>
+                    <p><span class="label">POLSKIE</span> <span class="description">Obywatelstwo</span></p>
+                    <p><span class="label">21.04.2006</span> <span class="description">Data urodzenia</span></p>
+                    <p><span class="label">06242112347</span> <span class="description">Numer PESEL</span></p>
+                </div>
+            </div>
+            <div class="validity">
+                <div class="validity-icon">
+                    <img src="normal_u26.svg" alt="Checkmark">
+                </div>
+                <div class="validity-text">Dokument ważny</div>
+            </div>
+        </div>
+        <div class="actions">
+            <div class="action-button">
+                <div class="icon-text">
+                    <img src="Projekt%20bez%20nazwy%20(29).png" alt="Confirm Icon">
+                    <span>Potwierdź swoje dane</span>
+                </div>
+                <img src="normal_u351.svg" alt="Arrow Icon" class="arrow-icon">
+            </div>
+            <div class="action-button">
+                <div class="icon-text">
+                    <img src="Projekt%20bez%20nazwy%20(30).png" alt="Document Icon">
+                    <span>Dane dokumentu</span>
+                </div>
+                <img src="normal_u351.svg" alt="Arrow Icon" class="arrow-icon">
+            </div>
+            <div class="action-button">
+                <span>Twoje dodatkowe dane</span>
+                <img src="normal_u351.svg" alt="Arrow Icon" class="arrow-icon" style="transform: rotate(90deg);">
+            </div>
+        </div>
+        <div class="last-update">
+            <div>
+                <div class="last-update-text">Ostatnia aktualizacja</div>
+                <div class="last-update-date">08.03.2023</div>
+            </div>
+            <button id="aktualizuj">Aktualizuj</button>
+        </div>
+        <div class="delete-button">
+            <div class="icon-text">
+                <img src="delete%20(1).png" alt="Delete Icon">
+                <span>Usuń dokument</span>
+            </div>
+        </div>
+    </div>
+    <div class="bottom-nav">
+        <div class="bottom-nav-item active">
+            <img src="unnamed%20(5).png" alt="Pulpit">
+            <span>Pulpit</span>
+        </div>
+        <div class="bottom-nav-item">
+            <img src="unnamed%20(1).png" alt="Dokumenty">
+            <span>Dokumenty</span>
+        </div>
+        <div class="bottom-nav-item">
+            <img src="unnamed%20(2).png" alt="Usługi">
+            <span>Usługi</span>
+        </div>
+        <div class="bottom-nav-item">
+            <img src="unnamed%20(3).png" alt="Kod QR">
+            <span>Kod QR</span>
+        </div>
+        <div class="bottom-nav-item">
+            <img src="unnamed%20(4).png" alt="Więcej">
+            <span>Więcej</span>
+        </div>
+    </div>
+    <div class="spacer"></div> <!-- Spacer for additional space under navigation -->
+    <script>
+        function updateTime() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            const day = String(now.getDate()).padStart(2, '0');
+            const month = String(now.getMonth() + 1).padStart(2, '0');
+            const year = now.getFullYear();
+            const timeString = `Czas: ${hours}:${minutes}:${seconds} ${day}.${month}.${year}`;
+            document.getElementById('data').textContent = timeString;
+        }
+
+        setInterval(updateTime, 1000);
+        updateTime();
+
+        // Detect if running as a Web Clip and apply specific styles
+        if (window.navigator.standalone) {
+            document.body.classList.add('standalone');
+        }
+
+        // Swipe functionality
+        const infoSection = document.getElementById('info-section');
+        const blueSection = document.getElementById('blue-section');
+        const leftIcon = document.getElementById('left-icon');
+        const rightIcon = document.getElementById('right-icon');
+        const leftIconBlue = document.getElementById('left-icon-blue');
+        const rightIconBlue = document.getElementById('right-icon-blue');
+        const closeIcon = document.getElementById('close-icon');
+
+        let startX;
+
+        infoSection.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        infoSection.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX > endX + 50) { // Swipe left
+                infoSection.style.display = 'none';
+                blueSection.style.display = 'block';
+            }
+        });
+
+        blueSection.addEventListener('touchstart', (e) => {
+            startX = e.touches[0].clientX;
+        });
+
+        blueSection.addEventListener('touchend', (e) => {
+            const endX = e.changedTouches[0].clientX;
+            if (startX < endX - 50) { // Swipe right
+                blueSection.style.display = 'none';
+                infoSection.style.display = 'block';
+            }
+        });
+
+        rightIcon.addEventListener('click', () => {
+            infoSection.style.display = 'none';
+            blueSection.style.display = 'block';
+        });
+
+        leftIconBlue.addEventListener('click', () => {
+            blueSection.style.display = 'none';
+            infoSection.style.display = 'block';
+        });
+
+        closeIcon.addEventListener('click', () => {
+            blueSection.style.display = 'none';
+        });
+
+        // Device orientation permission and event listener
+        async function getOrientation(){
+            // Check if the current device and browser support device orientation API
+            if (!window.DeviceOrientationEvent) {
+                return alert("Your current device or browser does not support the DeviceOrientation event");
+            }
+
+            // For iOS 13+ and Android 6.0+ (Chrome), you need to request permission explicitly
+            if (typeof DeviceOrientationEvent.requestPermission === 'function') {
+                try {
+                    const response = await DeviceOrientationEvent.requestPermission();
+                    if (response !== 'granted') {
+                        return alert("You must grant access to the device's sensor for this demo");
+                    }
+                } catch (error) {
+                    return alert("Error requesting permission for device orientation: " + error.message);
+                }
+            }
+
+            // Hide the button after permission is granted
+            document.getElementById('get-orientation').style.display = 'none';
+
+            // Add the device orientation event listener
+            window.addEventListener("deviceorientation", function(e){
+                let eagleContainer = document.getElementById('eagle-container');
+                let alpha = e.alpha;
+                let beta = e.beta;
+                let gamma = e.gamma;
+
+                // Change the filter based on the orientation angles
+                let hueRotate = alpha % 360;
+                let brightness = 1 + Math.abs(beta / 1440);  // Adjusted for less white
+                let contrast = 1 + Math.abs(gamma / 140);   // Adjusted for less intensity
+                let saturate = 1.5 + Math.abs(gamma / 5);   // Adjusted for more colors
+
+                eagleContainer.style.filter = `hue-rotate(${hueRotate}deg) brightness(${brightness}) contrast(${contrast}) saturate(${saturate})`;
+            });
+        }
+
+        document.getElementById('get-orientation').addEventListener('click', getOrientation);
+
+        // Add a class to the body element if the user agent is Android
+        if (/Android/i.test(navigator.userAgent)) {
+            document.body.classList.add('android');
+        }
+    </script>
+</body>
+
+<!-- Mirrored from mdwd.cba.pl/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 05 Aug 2024 11:50:39 GMT -->
+</html>
